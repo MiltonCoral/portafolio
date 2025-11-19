@@ -325,6 +325,193 @@
             }
         }
     </style>
+	<style>
+        body {
+            background: #1a1a1a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 2rem;
+            color: white;
+        }
+
+        .skills-certifications-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .column-header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(245, 106, 106, 0.3);
+        }
+
+        .column-header h2 {
+            color: white;
+            font-size: 2rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .column-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Languages List Style */
+        .languages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            padding-left: 0.5rem;
+        }
+
+        .language-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .language-content {
+            flex: 1;
+        }
+
+        .language-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .language-name {
+            color: white;
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .language-level {
+            color: rgba(245, 106, 106, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .proficiency-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .proficiency-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(245, 106, 106, 0.8), rgba(245, 106, 106, 0.4));
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Certifications List Style */
+        .certifications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .certification-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .certification-item:hover {
+            padding-left: 0.5rem;
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(245, 106, 106, 0.15);
+            border-radius: 8px;
+        }
+
+        .cert-content {
+            flex: 1;
+        }
+
+        .cert-name {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 0 0.3rem 0;
+            font-weight: 600;
+        }
+
+        .cert-issuer {
+            color: rgba(245, 106, 106, 0.9);
+            font-size: 0.95rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .column-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .language-item, .certification-item {
+                flex-direction: row;
+            }
+
+            .language-icon, .cert-icon {
+                font-size: 2rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
 	</head>
 	<body class="is-preload">
 
@@ -469,6 +656,104 @@
         </div>
     </div>
 </section>
+
+ <section class="skills-certifications-section">
+        <div class="two-column-layout">
+            <!-- LEFT COLUMN: LANGUAGES -->
+            <div>
+                <div class="column-header">
+                    <h2>Languages</h2>
+                    <p>Multilingual professional communication</p>
+                </div>
+
+                <div class="languages-list">
+                    <!-- Spanish -->
+                    <div class="language-item">
+                       
+                        <div class="language-content">
+                            <div class="language-header">
+                                <h3 class="language-name">Spanish</h3>
+                                <span class="language-level">Native</span>
+                            </div>
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- English -->
+                    <div class="language-item">
+                   
+                        <div class="language-content">
+                            <div class="language-header">
+                                <h3 class="language-name">English</h3>
+                                <span class="language-level">Business Professional</span>
+                            </div>
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Japanese -->
+                    <div class="language-item">
+                     
+                        <div class="language-content">
+                            <div class="language-header">
+                                <h3 class="language-name">Japanese</h3>
+                                <span class="language-level">Intermediate</span>
+                            </div>
+                            <div class="proficiency-bar">
+                                <div class="proficiency-fill" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: CERTIFICATIONS -->
+            <div>
+                <div class="column-header">
+                    <h2>Certifications</h2>
+                    <p>Professional credentials & qualifications</p>
+                </div>
+
+                <div class="certifications-list">
+                    <!-- TOEFL/IELTS -->
+                    <div class="certification-item">
+             
+                        <div class="cert-content">
+                            <h3 class="cert-name">Business English Certificate</h3>
+                            <p class="cert-issuer">TOEFL/IELTS Certified</p>
+                            <span class="cert-badge">Language Proficiency</span>
+                        </div>
+                    </div>
+
+
+                    <!-- Computer Science Degree -->
+                    <div class="certification-item">
+                
+                        <div class="cert-content">
+                            <h3 class="cert-name">Computer Science Engineering</h3>
+                            <p class="cert-issuer">Bachelor's Degree</p>
+                            <span class="cert-badge">Academic Degree</span>
+                        </div>
+                    </div>
+
+                    <!-- AWS/Tech Certifications -->
+                    <div class="certification-item">
+                      
+                        <div class="cert-content">
+                            <h3 class="cert-name">Cloud & AI Specializations</h3>
+                            <p class="cert-issuer">Google Data Analytics, AWS Cloud Solutions Architect Specialization, IBM Technical Support Professional Certificate</p>
+                            <span class="cert-badge">Technical Expertise</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 					<section>
