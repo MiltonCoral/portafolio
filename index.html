@@ -6,6 +6,35 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+			/* Video Background Styles */
+			#myVideo {
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				min-width: 100%;
+				min-height: 100%;
+				z-index: -2;
+				object-fit: cover;
+			}
+
+			/* Dark overlay for better readability */
+			body::before {
+				content: '';
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.5);
+				z-index: -1;
+			}
+
+			/* Ensure content is readable over video */
+			#wrapper {
+				position: relative;
+				z-index: 1;
+			}
+
 			.project-selector {
 				text-align: center;
 				margin-bottom: 2em;
@@ -16,36 +45,59 @@
 
 			.selector-btn {
 				padding: 0.75em 2.5em;
-				background: transparent;
-				color: #7f888f;
+				background: rgba(127, 136, 143, 0.3);
+				color: #fff;
 				cursor: pointer;
 				font-size: 1.1em;
 				font-weight: 600;
 				transition: all 0.4s ease;
 				border-radius: 4px;
-				position: relative;
-				overflow: hidden;
-			}
-
-	
-			.selector-btn.active::before {
-				left: 0;
+				border: 2px solid transparent;
+				backdrop-filter: blur(10px);
 			}
 
 			.selector-btn.active {
+				background: rgba(0, 0, 0, 0.6);
 				color: white;
-				
+				border-color: transparent;
+				box-shadow: 0 4px 12px rgba(245, 106, 106, 0.4);
+			}
+
+			.selector-btn {
+				background: rgba(0, 0, 0, 0.6);
+				color: white;
+				border-color: transparent;
+				box-shadow: 0 4px 12px rgba(245, 106, 106, 0.4);
 			}
 
 			.selector-btn:hover {
 				transform: translateY(-2px);
 				box-shadow: 0 4px 8px rgba(245, 106, 106, 0.3);
+				background: rgba(245, 106, 106, 0.4);
 			}
 
 			.posts article {
 				opacity: 1;
 				transform: scale(1);
 				transition: all 0.5s ease;
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(10px);
+				color: white;
+				border-radius: 20px;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				overflow: hidden;
+			}
+
+			.posts article h3 {
+				color: white;
+			}
+
+			.posts article p {
+				color: rgba(255, 255, 255, 0.9);
+			}
+
+			.posts article .image img {
+				border-radius: 15px 15px 0 0;
 			}
 
 			.posts article.fade-out {
@@ -77,37 +129,81 @@
 				display: none;
 			}
 
+			@media (max-width: 767px) {
+				#carnet {
+					display: none;
+				}
+			}
 		</style>
 	</head>
 	<body class="is-preload">
+
+		<!-- Background Video -->
+		<video autoplay muted loop playsinline id="myVideo">
+			<source src="images/html.webm" type="video/webm">
+			<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+		</video>
 
 		<div id="wrapper">
 			<div id="main">
 				<div class="inner">
 
 					<header id="header">
-						<a href="index.html" class="logo"><strong>Portfolio</strong></a>
-						<ul class="icons">
-							<p>MAIL: coral.milton@gmail.com</p>
-							<a href="https://www.linkedin.com/in/m1lt0n/" class="button">LinkedIn</a>
-						</ul>
+						<a href="index.html" class="logo" "><strong>Portfolio</strong></a>
+					
 					</header>
 
-				<section id="banner" style="display: flex; align-items: center; gap: 2rem;">
-					<div class="content" style="flex: 1;">
+				<section id="banner" 
+					style="
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						gap: 2rem;
+						padding: 2rem;
+						flex-wrap: wrap;
+					"
+				>
+					<!-- LEFT CONTENT -->
+					<div class="content" 
+						style="
+							flex: 1;
+							min-width: 200px;
+							background: rgba(255, 255, 255, 0.1);
+							padding: 2rem;
+							border-radius: 10px;
+							color: white;
+							backdrop-filter: blur(10px);
+							border: 1px solid rgba(255, 255, 255, 0.2);
+						"
+					>
 						<header>
-							<h1>Milton Coral</h1>
+							<h1 style="color: white;">Milton Coral</h1>
 						</header>
-						<p>I am a Computer Science Engineer with expertise in artificial intelligence and machine learning model development, large language model (LLM) optimization and prompt engineering, system administration across Linux/Windows environments, AWS cloud services, database management (MySQL, MariaDB, PostgreSQL, MongoDB), full-stack development with Python, Node.js, React, PHP, JavaScript, and Java, network infrastructure setup, data analysis and visualization, scalable web application architecture, quality assessment and model optimization, and system optimization.</p>
+						<p style="color: rgba(255, 255, 255, 0.9);">
+							I am a Computer Science Engineer with expertise in artificial intelligence and machine learning model development, large language model (LLM) optimization and prompt engineering, system administration across Linux/Windows environments, AWS cloud services, database management (MySQL, MariaDB, PostgreSQL, MongoDB), full-stack development with Python, Node.js, React, PHP, JavaScript, and Java, network infrastructure setup, data analysis and visualization, scalable web application architecture, quality assessment and model optimization, and system optimization.
+						</p>
 					</div>
-					<div class="image" style="flex-shrink: 0; margin-right: -300px;">
-						<img src="images/carnet.jpeg" alt="" style="max-width: 300px; height: auto;" />
+
+					<!-- RIGHT IMAGE -->
+					<div class="image" 
+						style="
+							flex-shrink: 0;
+							display: flex;
+							justify-content: center;
+							width: 100%;
+							max-width: 318px;
+							margin-left: auto;
+						"
+					>
+						<img id="carnet" src="images/carnet.jpeg" alt="" 
+							style="border-radius: 10px; box-shadow: 0 8px 16px rgba(0,0,0,0.3);"
+						/>
 					</div>
 				</section>
 
 					<section>
 						<header class="major">
-							<div class="project-selector">
+							<div class="project-selector" style="display: flex; gap: 1rem; flex-wrap: wrap;">
 								<button class="selector-btn active" data-category="ai">AI Projects</button>
 								<button class="selector-btn" data-category="data">Data Projects</button>
 								<button class="selector-btn" data-category="code">Code Projects</button>
@@ -118,7 +214,7 @@
 								<a class="image"><img src="images/idrix_mcp.jpeg"/></a>
 								<h3>MCP Server</h3>
 								<p>MCP Financial Management Server for Idrix Technology: Comprehensive system developed with FastMCP specifically designed to efficiently and automatically manage business finances. The server provides specialized tools for product, customer, and sales management, enabling complete financial control through data processing in Excel and CSV formats, automatic generation of professional reports in Word and LaTeX, and visualization of financial metrics through dynamic charts.</p>
-								<ul class="actions">
+								<ul class="actions" style="display: flex; justify-content: center;">
 									<li><a href="videos/output.mp4" class="button">Demo Video </a></li>
 								</ul>
 							</article>
@@ -127,50 +223,43 @@
 								<a class="image"><img src="images/idrix_randomforest.png" alt="" /></a>
 								<h3>Python Machine Learning APIs</h3>
 								<p>AI Prediction API for Idrix Technology: FastAPI-based machine learning system implementing clean architecture with dependency injection for scalable financial predictions and model training. The application features a modular design using the Container pattern for efficient dependency management, providing RESTful endpoints for real-time predictions and model training operations.</p>
-								<ul class="actions">
+								<ul class="actions" style="display: flex; justify-content: center; ">
 									<li><a href="https://gitlab.com/coral.milton/diccionario-anki-jp/-/blob/main/prueba.ipynb" class="button">Machine Learning Model Sample</a></li>
 								</ul>
 							</article>
 
-
 							<article data-category="ai">
 								<a class="image"><img src="images/outlier_ai_newton.png" alt="" /></a>
 								<h3>Outlier AI - Newton Buffet Project</h3>
-								<p>Quality assurance project focused on stress-testing Large Language Models' ability to generate complex 2D/3D physics simulations and interactive code artifacts. Developed challenging prompts designed to expose model failures in dynamic physics environments, then systematically identified, categorized, and documented errors including runtime crashes, performance issues, visual bugs, and simulation logic flaws. Created comprehensive golden solutions by rewriting failed responses into flawless, production-ready code. This iterative workflow (prompt creation, model evaluation, failure annotation, response rewriting, and video documentation) ensures continuous improvement in LLM code generation capabilities for physics-based applications.</p>
+								<p>Quality assurance project focused on stress-testing Large Language Models' ability to generate complex 2D/3D physics simulations and interactive code artifacts. Developed challenging prompts designed to expose model failures in dynamic physics environments, then systematically identified, categorized, and documented errors including runtime crashes, performance issues, visual bugs, and simulation logic flaws. Created comprehensive golden solutions by rewriting failed responses into flawless, production-ready code.</p>
 								<p>Technologies: Game Creation, Physics Simulations, 2D/3D Graphics, JavaScript/Python, Error Classification, Code Quality Assurance</p>
-								<p>Key Contributions: Adversarial prompt design, systematic error categorization, golden solution development, quality benchmarking</p>
-								<ul class="actions">
+								<ul class="actions" style="display: flex; justify-content: center; ">
 									<li><a class="button" href="https://gitlab.com/coral.milton/diccionario-anki-jp/-/blob/main/game1.py">Code Sample</a></li>
 								</ul>
 							</article>
 
-
 							<article data-category="ai">
 								<a class="image"><img src="images/outlier ai 1.png" alt="" /></a>
 								<h3>Outlier AI - Antchamber Project</h3>
-								<p>LLM System Prompt Engineering & Tool Execution Optimization: Advanced project focused on designing, testing, and refining Large Language Model behavior through comprehensive system prompt engineering and MCP server tool execution validation. The initiative encompasses three core objectives: creating robust system prompts that define the model's personality, operational rules, and contextual boundaries; building interactive conversations to ensure response alignment with established guidelines; and implementing rigorous error identification and correction protocols with emphasis on optimal user experience. This project specifically addresses critical areas including accurate tool execution within MCP server environments, response consistency, and behavioral refinement across multiple domains, ensuring the LLM maintains reliability and precision in complex operational scenarios.</p>
+								<p>LLM System Prompt Engineering & Tool Execution Optimization: Advanced project focused on designing, testing, and refining Large Language Model behavior through comprehensive system prompt engineering and MCP server tool execution validation. The initiative encompasses creating robust system prompts, building interactive conversations, and implementing rigorous error identification protocols.</p>
 								<p>Technologies: LLM Engineering, MCP Server, Prompt Engineering, System Design, Quality Assurance</p>
-								<p>Key Contributions: System prompt architecture, conversation flow design, error correction protocols, tool execution validation</p>
-								<ul class="actions">
+								<ul class="actions" style="display: flex; justify-content: center; ">
 									<li><a class="button" href="task_sample.html">System Prompt Task Sample</a></li>
 								</ul>
 							</article>
 
-							
 							<article data-category="ai">
 								<a class="image"><img src="images/outlier ai2.png" alt="" /></a>
 								<h3>Outlier AI - World Tools Quest Project</h3>
-								<p>Innovative reinforcement learning project designed to enhance Large Language Model performance in MCP (Model Context Protocol) tool-calling tasks through Reinforcement Learning with Verifiable Rewards (RLVR). Implements a sophisticated rubric-based reward system that provides detailed, multi-dimensional feedback for complex, multi-step reasoning processes. The system enables precise evaluation and improvement of the model's tool execution capabilities, combining structured feedback loops with verifiable reward signals to optimize decision-making patterns when interacting with external tools and APIs. This approach significantly improves accuracy, consistency, and reasoning quality in complex MCP server environments where traditional training methods fall short.</p>
+								<p>Innovative reinforcement learning project designed to enhance Large Language Model performance in MCP tool-calling tasks through Reinforcement Learning with Verifiable Rewards (RLVR). Implements a sophisticated rubric-based reward system that provides detailed, multi-dimensional feedback for complex, multi-step reasoning processes.</p>
 							</article>
 
-
-
-							<!-- DATA Projects (hidden by default) -->
+							<!-- DATA Projects -->
 							<article data-category="data">
 								<a class="image"><img src="images/proyecto_datos.png" alt="" /></a>
 								<h3>Analysis of Streets with High Accident Rates in Quito, Ecuador</h3>
-								<p>Comprehensive data analysis project focused on identifying and evaluating the streets with the highest incidence of traffic accidents in Quito. The project utilizes Twitter as the primary data source, implementing natural language processing and sentiment analysis to extract accident-related information from social media posts. Through detailed statistical visualizations and interactive charts, the analysis examines the proportions of fatalities and injuries across different locations, while identifying the most frequently used keywords and phrases in accident descriptions. The project combines geospatial mapping with data visualization to pinpoint critical road safety zones, providing actionable insights for urban planning authorities and traffic management systems to develop targeted accident prevention strategies and improve public safety measures in high-risk areas.</p>
-								<ul class="actions">
+								<p>Comprehensive data analysis project utilizing Twitter data, NLP, and sentiment analysis to identify streets with highest accident rates in Quito. Features geospatial mapping and interactive visualizations for accident prevention insights.</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
 									<li><a href="https://gitlab.com/coral.milton/analysis-of-streets-with-high-accident-rates-in-quito-ecuador/-/blob/main/Data_analysis.ipynb?ref_type=heads" class="button">Repository</a></li>
 								</ul>
 							</article>
@@ -178,83 +267,147 @@
 							<article data-category="data">
 								<a class="image"><img src="images/proyecto_u1.png" alt="" /></a>
 								<h3>Analysis and Representation of Data from the Ministry of Health in Ecuador</h3>
-								<p>The project was part of a research contest at the Universidad Politécnica Salesiana in Ecuador and focused on the analysis and representation of data from the Ministry of Health in Ecuador, centering on the 7 most common clinical data points. The main goal was to raise awareness about the state of health in the country to inform and prevent future issues. To achieve this, techniques such as creating maps were used to show the geographic distribution of cases by province, highlighting those with the highest frequency. In addition, diseases and their causes were detailed to provide a deeper understanding of the situation. The project was developed in R Studio, leveraging its capabilities to handle large datasets, as it included over a million records. Specialized libraries for data analysis and visualization were used, allowing for a clear and effective representation of the information obtained from the Ministry of Health.</p>
-								<ul class="actions">
+								<p>Research project analyzing over 1 million health records from Ecuador's Ministry of Health, developed in R Studio with interactive Shiny dashboard. Features geographic distribution maps, disease analysis, and statistical visualizations for public health awareness.</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
 									<li><a href="https://mi1w0i-lancelot.shinyapps.io/APP_CASOS_CLINICOS_SHINY/" class="button">Repository</a></li>
 								</ul>
 							</article>
 
-
 							<article data-category="data">
 								<a class="image"><img src="images/idrix_powerbi.png" alt="" /></a>
 								<h3>Insurance and Financial Data Analysis Dashboard for Idrix Technology</h3>
-								<p>Comprehensive Power BI analytics solution designed to perform in-depth analysis of insurance amounts, loans, poverty levels, and customer segmentation for strategic business intelligence. The project delivers interactive dashboards that visualize client status across multiple financial dimensions, enabling data-driven decision-making and optimized resource allocation. Features dynamic visualizations including bar charts, line graphs, pie charts, and geospatial maps with custom filtering capabilities for tailored analysis by geographic location, income ranges, and customer types. The platform facilitates exploration of correlations between key financial variables and identification of behavioral trends in client interactions with financial products. This analytical tool empowers Idrix Technology to enhance client management strategies, improve risk assessment accuracy, and optimize business operations through actionable insights derived from comprehensive financial data analysis.</p>
+								<p>Comprehensive Power BI analytics solution with interactive dashboards for insurance amounts, loans, poverty levels, and customer segmentation. Features dynamic visualizations and custom filtering for strategic business intelligence.</p>
 							</article>
 
-
 							<article data-category="data">
-							<a class="image"><img src="images/idrix_powerbi2.png" alt="" /></a>
-							<h3>Real-Time Financial Analysis Dashboard for IDRIX Company</h3>
-							<p>Comprehensive Power BI analytics solution with live MySQL database integration designed to deliver real-time financial intelligence and business performance monitoring. The dashboard features interactive visualizations including client revenue analysis through dynamic bar charts identifying top revenue contributors, comparative income versus expense metrics displaying financial health (~150K income vs ~125K expenses), and detailed payment method distribution breakdowns via pie charts showing transaction preferences with bank transfers dominating at 62.42%, followed by checks (15.15%) and debit cards (13.94%). This analytical platform enables continuous monitoring of key financial indicators, facilitating data-driven decision-making for optimizing client relationships, improving cash flow management, and enhancing operational efficiency. The real-time data connectivity ensures stakeholders have immediate access to current business metrics, empowering IDRIX management to identify revenue patterns, track payment behaviors, assess profitability margins, and implement strategic initiatives that drive business growth and financial optimization across the organization.</p>
-						</article>
+								<a class="image"><img src="images/idrix_powerbi2.png" alt="" /></a>
+								<h3>Real-Time Financial Analysis Dashboard for IDRIX Company</h3>
+								<p>Power BI solution with live MySQL integration delivering real-time financial intelligence. Features client revenue analysis, income vs expense metrics, and payment method distribution with continuous monitoring capabilities.</p>
+							</article>
 
-
-
-							<!-- Code Projects (hidden by default) -->
+							<!-- Code Projects -->
 							<article data-category="code">
 								<a class="image"><img src="images/proyecto_aws_pi2.png" alt="" /></a>
 								<h3>IoT Sensor Dashboard with Raspberry Pi 4 & AWS</h3>
-								<p>Cloud-connected IoT monitoring system developed for Universidad Politécnica Salesiana that integrates a Raspberry Pi 4 with environmental sensors (temperature, humidity, distance) to collect and transmit real-time data to an AWS-hosted dashboard. Built with Node.js backend deployed on Elastic Beanstalk, the application features secure user authentication via AWS Cognito, real-time data visualization, and scalable cloud infrastructure for sensor performance analysis and testing, demonstrating the seamless integration of edge IoT devices with enterprise-grade cloud services.</p>
-								<ul class="actions">
+								<p>Cloud-connected IoT monitoring system integrating Raspberry Pi 4 with environmental sensors. Built with Node.js on AWS Elastic Beanstalk, featuring AWS Cognito authentication and real-time data visualization.</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
 									<li><a href="https://gitlab.com/coral.milton/dashboard_aws_pi_4" class="button">Repository</a></li>
 								</ul>
 							</article>
 
 							<article data-category="code">
-							<a class="image"><img src="images/proyecto_grado.png" alt="" /></a>
-							<h3>AI-Powered Invoice Software for Ecuadorian Microbusinesses</h3>
-							<p>Cloud-native invoice management system designed specifically for microbusinesses in Ecuador, leveraging artificial intelligence and AWS microservices architecture to automate and streamline billing processes. The application integrates machine learning capabilities for intelligent data extraction, document processing, and financial analytics, while utilizing cloud microservices for scalability, reliability, and cost-effectiveness. Published research available through Universidad Politécnica Salesiana's institutional repository, demonstrating practical application of AI and cloud computing to address real-world business challenges in emerging markets.</p>
-							<ul class="actions">
-								<li><a href="https://dspace.ups.edu.ec/handle/123456789/27270?locale=en" class="button">Publication</a></li>
-							</ul>
-						</article>
+								<a class="image"><img src="images/proyecto_grado.png" alt="" /></a>
+								<h3>AI-Powered Invoice Software for Ecuadorian Microbusinesses</h3>
+								<p>Cloud-native invoice management system leveraging AI and AWS microservices for automated billing. Features ML capabilities for intelligent data extraction and financial analytics.</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
+									<li><a href="https://dspace.ups.edu.ec/handle/123456789/27270?locale=en" class="button">Publication</a></li>
+								</ul>
+							</article>
 
-						
-						<article data-category="code">
-						<a class="image"><img src="images/carrito.png" alt="" /></a>
-						<h3>Automated Welding System with PIC Microcontroller (C Programming)</h3>
-						<p>Industrial automation prototype programmed in C for precision welding of beams and large metal structures, developed as an educational platform for Technical Salesian "Don Bosco" High School students to learn embedded systems and industrial automation. The system utilizes a PIC 16F877A microcontroller with Bluetooth and Serial communication capabilities for flexible programming and remote control, featuring multiple safety control modes to protect operators from welding contamination and electric arc exposure. Built with steel and aluminum components and employing standardized traction systems for cost-effective maintenance, the prototype implements short circuit welding techniques for optimal performance during extended industrial operations, with user-controlled speed regulation and welding time monitoring through an integrated control interface, demonstrating practical applications of embedded C programming, motor control, wireless communication protocols, and industrial safety systems in automated manufacturing processes.</p>
-						<ul class="actions">
-							<li><a href="https://gitlab.com/coral.milton/proyecto_de_grado_donbosco" class="button">Repository</a></li>
-						</ul>
-					</article>
+							<article data-category="code">
+								<a class="image"><img src="images/carrito.png" alt="" /></a>
+								<h3>Automated Welding System with PIC Microcontroller (C Programming)</h3>
+								<p>Industrial automation prototype programmed in C using PIC 16F877A microcontroller. Features Bluetooth/Serial communication, multiple safety modes, and user-controlled welding parameters for educational purposes.</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
+									<li><a href="https://gitlab.com/coral.milton/proyecto_de_grado_donbosco" class="button">Repository</a></li>
+								</ul>
+							</article>
+
+							<article data-category="code">
+								<a class="image"><img src="images/clasificador_palabras.png" alt="" /></a>
+								<h3>Offensive Language Classifier with NLP & Machine Learning</h3>
+								<p>Flask-based web application using NLP and multiple ML algorithms (Naive Bayes, neural networks, distance matrices) for real-time offensive language classification and content moderation.</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
+									<li><a href="https://gitlab.com/coral.milton/proyecto-clasificador-de-idioma-ofensivo" class="button">Repository</a></li>
+								</ul>
+							</article>
+
+							<article data-category="code">
+								<a class="image"><img src="images/reportes_warehouse.png" alt="" /></a>
+								<h3>Full-Stack Data Warehouse & Business Intelligence Platform</h3>
+								<p>Enterprise data warehouse with Bootstrap frontend, Node.js API, and PostgreSQL database. Features CRUD operations, interactive Highcharts visualizations, and multi-format export (Excel, PDF).</p>
+								<ul class="actions" style="display: flex; justify-content: center; ">
+									<li><a href="https://gitlab.com/coral.milton/postgres-api-reports" class="button">Repository</a></li>
+								</ul>
+							</article>
+
+						</div>
+					</section>
 
 
-						<article data-category="code">
-						<a class="image"><img src="images/clasificador_palabras.png" alt="" /></a>
-						<h3>Offensive Language Classifier with NLP & Machine Learning</h3>
-						<p>Flask-based web application that leverages Natural Language Processing and multiple machine learning algorithms to classify text as offensive or non-offensive in real-time. The system implements three complementary classification approaches—Naive Bayes for probabilistic text analysis, neural networks for deep pattern recognition, and distance matrices for semantic similarity measurement—providing robust and accurate content moderation capabilities. Features an interactive web interface that allows users to submit text and instantly receive classification results, demonstrating practical applications of NLP and ensemble machine learning techniques for automated content filtering and moderation.</p>
-						<ul class="actions">
-							<li><a href="https://gitlab.com/coral.milton/proyecto-clasificador-de-idioma-ofensivo" class="button">Repository</a></li>
-						</ul>
-					</article>
+					<section id="contact" style="margin-top: 4rem;">
+						<header class="major">
+							<h2 style="color: white; text-align: center; margin-bottom: 2rem;">Get In Touch</h2>
+						</header>
+						<div style="
+							background: rgba(255, 255, 255, 0.1);
+							backdrop-filter: blur(10px);
+							border-radius: 20px;
+							padding: 3rem;
+							border: 1px solid rgba(255, 255, 255, 0.2);
+							max-width: 800px;
+							margin: 0 auto;
+						">
+							<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+								<div style="text-align: center;">
+									<div style="
+										width: 60px;
+										height: 60px;
+										background: rgba(245, 106, 106, 0.3);
+										border-radius: 50%;
+										display: flex;
+										align-items: center;
+										justify-content: center;
+										margin: 0 auto 1rem;
+										border: 2px solid rgba(245, 106, 106, 0.5);
+									">
+										<span style="font-size: 24px;">📧</span>
+									</div>
+									<h3 style="color: white; font-size: 1.2rem; margin-bottom: 0.5rem;">Email</h3>
+									<a href="mailto:coral.milton@gmail.com" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s;">
+										coral.milton@gmail.com
+									</a>
+								</div>
+								
+								<div style="text-align: center;">
+									<div style="
+										width: 60px;
+										height: 60px;
+										background: rgba(245, 106, 106, 0.3);
+										border-radius: 50%;
+										display: flex;
+										align-items: center;
+										justify-content: center;
+										margin: 0 auto 1rem;
+										border: 2px solid rgba(245, 106, 106, 0.5);
+									">
+										<span style="font-size: 24px;">💼</span>
+									</div>
+									<h3 style="color: white; font-size: 1.2rem; margin-bottom: 0.5rem;">LinkedIn</h3>
+									<a href="https://www.linkedin.com/in/m1lt0n/" target="_blank" style="color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: color 0.3s;">
+										/in/m1lt0n
+									</a>
+								</div>
+							</div>
 
-
-
-					
-					<article data-category="code">
-						<a class="image"><img src="images/reportes_warehouse.png" alt="" /></a>
-						<h3>Full-Stack Data Warehouse & Business Intelligence Platform</h3>
-						<p>Enterprise-grade data warehouse solution built with a three-tier architecture featuring a Bootstrap front-end, Node.js RESTful API backend, and PostgreSQL multidimensional database for advanced business intelligence and decision-making support. The application implements two core modules: a Maintenance system for complete CRUD operations on warehouse data, and a comprehensive Reports dashboard with interactive statistical visualizations using Highcharts, dynamic filtering capabilities, and multi-format export functionality (Excel, PDF) via Datatables. Demonstrates full-stack development proficiency, RESTful API design, multidimensional data modeling, and practical implementation of business intelligence concepts for real-world analytical reporting and data-driven decision support systems.</p>
-						<ul class="actions">
-							<li><a href="https://gitlab.com/coral.milton/postgres-api-reports" class="button">Repository</a></li>
-						</ul>
-					</article>
-
-					
-
-						
-
+							<div style="text-align: center; margin-top: 2rem;">
+								<p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; font-size: 1.1rem;">
+									Let's connect and discuss how we can work together on your next project!
+								</p>
+								<a href="mailto:coral.milton@gmail.com" class="button" style="
+								
+									background: rgba(245, 106, 106, 0.6);
+									color: white;
+									border: 2px solid rgba(245, 106, 106, 0.8);
+									border-radius: 50px;
+									text-decoration: none;
+									display: inline-block;
+									transition: all 0.3s ease;
+									backdrop-filter: blur(10px);
+								">
+									Send Message
+								</a>
+							</div>
 						</div>
 					</section>
 
@@ -269,6 +422,11 @@
 		<script src="assets/js/main.js"></script>
 
 		<script>
+			// Ensure video plays
+			const video = document.getElementById('myVideo');
+			video.play().catch(e => console.log('Autoplay prevented:', e));
+
+			// Project selector functionality
 			document.querySelectorAll('.selector-btn').forEach(button => {
 				button.addEventListener('click', function() {
 					const category = this.getAttribute('data-category');
@@ -295,7 +453,6 @@
 								article.classList.remove('fade-out');
 								article.classList.add('fade-in');
 								
-								// Remove fade-in class after animation
 								setTimeout(() => {
 									article.classList.remove('fade-in');
 								}, 600);
