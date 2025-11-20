@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+
 			
 			/* Video Background Styles */
 			#myVideo {
@@ -104,8 +105,20 @@
 				}
 			}
 		</style>
-		 <style>
 
+ <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
 
         .carousel-section {
             max-width: 1000px;
@@ -121,6 +134,7 @@
             color: white;
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            word-wrap: break-word;
         }
 
         .carousel-header p {
@@ -137,11 +151,12 @@
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
-            gap: 0rem;
+            gap: 0;
         }
 
         .experience-card {
             min-width: 100%;
+            max-width: 100%;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -152,6 +167,9 @@
             gap: 2rem;
             align-items: flex-start;
             flex-wrap: wrap;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
         }
 
         .experience-logo {
@@ -165,11 +183,13 @@
             justify-content: center;
             font-size: 3rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            object-fit: contain;
         }
 
         .experience-content {
             flex: 1;
-            min-width: 300px;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .experience-title {
@@ -177,6 +197,8 @@
             font-size: 1.8rem;
             margin: 0 0 0.5rem 0;
             font-weight: 600;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .experience-company {
@@ -184,6 +206,7 @@
             font-size: 1.3rem;
             margin: 0 0 0.5rem 0;
             font-weight: 500;
+            word-wrap: break-word;
         }
 
         .experience-date {
@@ -196,6 +219,8 @@
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.8;
             margin-bottom: 1.5rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .experience-skills {
@@ -211,6 +236,7 @@
             border-radius: 20px;
             font-size: 0.9rem;
             border: 1px solid rgba(245, 106, 106, 0.5);
+            white-space: nowrap;
         }
 
         .carousel-controls {
@@ -234,9 +260,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
         }
 
-        .carousel-btn:hover {
+        .carousel-btn:hover:not(:disabled) {
             background: rgba(245, 106, 106, 0.8);
             transform: scale(1.1);
         }
@@ -258,6 +285,8 @@
             background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
+            border: none;
+            padding: 0;
         }
 
         .dot.active {
@@ -267,8 +296,24 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .carousel-section {
+                max-width: 100%;
+            }
+
+            .carousel-header h2 {
+                font-size: 2rem;
+            }
+
+            .carousel-header p {
+                font-size: 1rem;
+            }
+
             .experience-card {
-                padding: 2rem;
+                padding: 1.5rem;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -280,19 +325,77 @@
                 font-size: 2.5rem;
             }
 
+            .experience-content {
+                width: 100%;
+            }
+
             .experience-title {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             .experience-company {
                 font-size: 1.1rem;
             }
 
+            .experience-description {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
             .experience-skills {
                 justify-content: center;
             }
+
+            .skill-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-controls {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .experience-card {
+                padding: 1rem;
+            }
+
+            .experience-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .experience-title {
+                font-size: 1.2rem;
+            }
+
+            .experience-company {
+                font-size: 1rem;
+            }
+
+            .experience-description {
+                font-size: 0.9rem;
+            }
+
+            .skill-tag {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.6rem;
+            }
         }
     </style>
+
 	<style>
 
         .skills-certifications-section {
@@ -837,12 +940,35 @@
 <section>
   <div class="container">
         <header>
-            <h1>Projects</h1>
-            <div class="project-selector">
-                <button class="selector-btn active" data-category="ai">AI Projects</button>
-                <button class="selector-btn" data-category="data">Data Projects</button>
-                <button class="selector-btn" data-category="code">Code Projects</button>
-            </div>
+            <div class="project-selector" 
+     style="
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 1rem; 
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+     "
+>
+    <button class="selector-btn active" data-category="ai"
+       
+    >
+        AI Projects
+    </button>
+
+    <button class="selector-btn" data-category="data"
+      
+    >
+        Data Projects
+    </button>
+
+    <button class="selector-btn" data-category="code"
+    
+    >
+        Code Projects
+    </button>
+</div>
+
         </header>
 
         <div class="projects-grid">
@@ -1093,7 +1219,6 @@
         const nextBtn = document.getElementById('nextBtn');
         const dotsContainer = document.getElementById('dotsContainer');
 
-        // Create dots
         for (let i = 0; i < totalCards; i++) {
             const dot = document.createElement('div');
             dot.className = 'dot';
@@ -1105,13 +1230,11 @@
         function updateCarousel() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
             
-            // Update dots
             const dots = dotsContainer.children;
             for (let i = 0; i < dots.length; i++) {
                 dots[i].classList.toggle('active', i === currentIndex);
             }
 
-            // Update button states
             prevBtn.disabled = currentIndex === 0;
             nextBtn.disabled = currentIndex === totalCards - 1;
         }
@@ -1128,7 +1251,7 @@
             updateCarousel();
         }
 
-        // Initialize
+     
         updateCarousel();
 
  
